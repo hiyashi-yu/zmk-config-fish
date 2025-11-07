@@ -104,25 +104,25 @@
                         &kp L       &kp U       &kp F       &kp MINUS           &kp K       &kp W       &kp R       &kp Y       
 &kp Q       &kp E       &kp I       &kp A       &kp O       &kp COMMA           &kp G       &kp T       &kp N       &kp S       &kp H       &kp P       
             &kp Z       &kp X       &kp C       &kp V                                       &kp D       &kp M       &kp J       &kp B       
-                                                &lt 1 BSPC  &mt LCTRL RET       &mt RCTRL TAB &lt 2 SPACE 
+                                                &mt LCTRL SPACE &lt 1 RET       &lt 2 TAB   &mt RCTRL BSPC 
             >;
         };
 
         layer_math {
             bindings = <
-                        &kp LT      &kp EQUAL   &kp GT      &kp DOT             &kp COLON   &kp N7      &kp N8      &kp N9      
-&kp TILDE   &kp FSLH    &mt RSHFT PLUS &mt RALT MINUS &mt RGUI STAR &kp CARET   &kp N0      &mt LGUI N4 &mt LALT N5 &mt LSHFT N6 &kp PLUS   &kp PRCNT   
+                        &kp LT      &kp CARET   &kp GT      &kp COLON           &kp EQUAL   &kp N7      &kp N8      &kp N9      
+&kp TILDE   &kp FSLH    &mt RSHFT PLUS &mt RALT MINUS &mt RGUI STAR &kp DOT     &kp N0      &mt LGUI N4 &mt LALT N5 &mt LSHFT N6 &kp PLUS   &kp PRCNT   
             &kp UNDER   &kp EXCL    &kp QMARK   &kp SEMI                                    &kp N1      &kp N2      &kp N3      &kp MINUS   
-                                                &none       &trans              &trans      &lt 6 SPACE 
+                                                &trans      &none               &lt 6 SPACE &trans      
             >;
         };
 
         layer_navi {
             bindings = <
-                        &kp LBKT    &kp DQT     &kp RBKT    &kp AMPS            &kp C_VOL_UP &kp C_MUTE &kp UP      &kp ESC     
-&kp AT      &kp HASH    &mt LCTRL LPAR &mt LALT SQT &mt LSHFT RPAR &kp PIPE     &kp C_VOL_DN &kp LEFT   &kp DOWN    &kp RIGHT   &kp C_BRI_UP &kp PAUSE_BREAK 
-            &kp BSLH    &kp LBRC    &kp GRAVE   &kp RBRC                                    &kp C_PREV  &kp C_PP    &kp C_NEXT  &kp C_BRI_DN 
-                                                &lt 6 BSPC  &trans              &trans      &none       
+                        &kp LBKT    &kp AT      &kp RBKT    &kp AMPS            &kp C_VOL_UP &kp C_MUTE &kp UP      &kp LANG1   
+&kp ESC     &kp HASH    &mt LCTRL LPAR &mt LALT SQT &mt LSHFT RPAR &kp PIPE     &kp C_VOL_DN &kp LEFT   &kp DOWN    &kp RIGHT   &kp C_BRI_UP &kp PAUSE_BREAK 
+            &kp BSLH    &kp LBRC    &kp DQT     &kp RBRC                                    &kp C_PREV  &kp C_PP    &kp C_NEXT  &kp C_BRI_DN 
+                                                &trans      &lt 6 BSPC          &none       &trans      
             >;
         };
 
@@ -155,8 +155,8 @@
 
         layer_system {
             bindings = <
-                        &bt BT_SEL 4 &bt BT_CLR &bt BT_CLR_ALL &out OUT_TOG     &tog 3      &kp INS     &kp HOME    &kp PG_UP   
-&kp F1      &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &kp F6          &kp F7      &kp DEL     &kp END     &kp PG_DN   &kp K_APP   &kp F12     
+                        &bt BT_SEL 4 &bt BT_CLR &bt BT_CLR_ALL &out OUT_TOG     &tog 7      &kp DEL     &kp PG_UP   &kp INS     
+&kp F1      &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &kp F6          &kp F7      &kp HOME    &kp PG_DN   &kp END     &kp K_APP   &kp F12     
             &kp F2      &kp F3      &kp F4      &kp F5                                      &kp F8      &kp F9      &kp F10     &kp F11     
                                                 &none       &none               &none       &none       
             >;
