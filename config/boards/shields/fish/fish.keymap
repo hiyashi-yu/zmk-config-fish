@@ -104,7 +104,7 @@
                         &kp L       &kp U       &kp F       &kp MINUS           &kp K       &kp W       &kp R       &kp Y       
 &kp Q       &kp E       &kp I       &kp A       &kp O       &kp COMMA           &kp G       &kp T       &kp N       &kp S       &kp H       &kp P       
             &kp Z       &kp X       &kp C       &kp V                                       &kp D       &kp M       &kp J       &kp B       
-                                                &mt LCTRL SPACE &lt 1 RET       &lt 2 TAB   &mt RCTRL BSPC 
+                                                &mt LSHFT BSPC &lt 1 RET        &lt 2 SPACE &mt RCTRL TAB 
             >;
         };
 
@@ -119,7 +119,7 @@
 
         layer_navi {
             bindings = <
-                        &kp LBKT    &kp AT      &kp RBKT    &kp AMPS            &kp C_VOL_UP &kp C_MUTE &kp UP      &kp LANG1   
+                        &kp LBKT    &kp AT      &kp RBKT    &kp AMPS            &kp C_VOL_UP &kp C_MUTE &kp UP      &kp LC(BSPC) 
 &kp ESC     &kp HASH    &mt LCTRL LPAR &mt LALT SQT &mt LSHFT RPAR &kp PIPE     &kp C_VOL_DN &kp LEFT   &kp DOWN    &kp RIGHT   &kp C_BRI_UP &kp PAUSE_BREAK 
             &kp BSLH    &kp LBRC    &kp DQT     &kp RBRC                                    &kp C_PREV  &kp C_PP    &kp C_NEXT  &kp C_BRI_DN 
                                                 &trans      &lt 6 BSPC          &none       &trans      
@@ -156,7 +156,7 @@
         layer_system {
             bindings = <
                         &bt BT_SEL 4 &bt BT_CLR &bt BT_CLR_ALL &out OUT_TOG     &tog 7      &kp DEL     &kp PG_UP   &kp INS     
-&kp F1      &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &kp F6          &kp F7      &kp HOME    &kp PG_DN   &kp END     &kp K_APP   &kp F12     
+&kp F1      &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &kp F6          &kp F7      &kp HOME    &kp PG_DN   &kp END     &kp LC(BSPC) &kp F12    
             &kp F2      &kp F3      &kp F4      &kp F5                                      &kp F8      &kp F9      &kp F10     &kp F11     
                                                 &none       &none               &none       &none       
             >;
@@ -164,9 +164,9 @@
 
         layer_extra_1 {
             bindings = <
-                        &none       &none       &none       &none               &none       &none       &none       &none       
-&none       &none       &none       &none       &none       &none               &none       &none       &none       &none       &none       &none       
-            &none       &none       &none       &none                                       &none       &none       &none       &none       
+                        &none       &kp UP      &none       &kp MINUS           &kp EQUAL   &kp N7      &kp N8      &kp N9      
+&tog 7      &none       &kp LEFT    &kp DOWN    &kp RIGHT   &kp PLUS            &kp N0      &kp N4      &kp N5      &kp N6      &kp DOT     &kp FSLH    
+            &none       &none       &none       &none                                       &kp N1      &kp N2      &kp N3      &kp COLON   
                                                 &none       &none               &none       &none       
             >;
         };
