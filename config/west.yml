@@ -2,10 +2,15 @@ manifest:
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
+    - name: hiyashi-yu
+      url-base: https://github.com/hiyashi-yu
   projects:
     - name: zmk
       remote: zmkfirmware
       revision: main
       import: app/west.yml
+    - name: zmk-naginata
+      remote: hiyashi-yu
+      revision: main
   self:
     path: config
