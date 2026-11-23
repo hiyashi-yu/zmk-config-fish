@@ -45,6 +45,25 @@
     // 独自の入力を定義できる（上級者向け）
 
     behaviors {
+        // なかぼね用：他のキーを押したら即レイヤー、単独の短押しはタップ扱い
+        lt_hp: layer_tap_hp {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <150>;
+            bindings = <&mo>, <&kp>;
+        };
+
+        // なかぼね用：「へ」短押し＝へ、長押し＝数字レイヤー
+        ht_ng: hold_tap_ng {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <150>;
+            bindings = <&mo>, <&ng>;
+        };
     };
 
     macros {
@@ -213,18 +232,18 @@
         layer_naginata {
             bindings = <
                         &ng W       &ng E       &ng R       &ng T               &ng Y       &ng U       &ng I       &ng O
-&ng Q       &ng A       &ng S       &ng D       &ng F       &ng G               &ng H       &ng J       &ng K       &ng L       &ng P       &ng SEMI
+&ng Q       &ng A       &ng S       &ng D       &ng F       &ng G               &ng H       &ng J       &ng K       &ng L       &ng P       &ht_ng 11 SEMI
             &ng Z       &ng X       &ng C       &ng V                                       &ng M       &ng COMMA   &ng DOT     &ng SLASH
-                                                &kp TAB     &kp RET               &lt 11 SPACE &kp TAB
+                                                &kp LCTRL   &kp SPACE             &lt_hp 12 RET &kp TAB
             >;
         };
 
         // 薙刀式の上で使う数字レイヤー（Space長押し）。薙刀式（10）より上にないと効かない
         layer_ng_math {
             bindings = <
-                        &kp N1      &kp N2      &kp N3      &trans              &kp EQUAL   &kp LT      &kp UNDER   &kp GT
-&kp PLUS    &kp N0      &kp N4      &kp N5      &kp N6      &kp DOT            &kp LS(INT1) &kp COLON   &kp MINUS   &kp DQT     &kp FSLH &kp PRCNT
-            &kp DLLR    &kp N7      &kp N8      &kp N9                                      &kp EXCL    &kp QMARK   &kp SQT     &kp SEMI
+                        &kp N1      &kp N2      &kp N3      &kp N4              &kp N5      &kp N6      &kp N7      &kp N8
+&kp LC(A)   &kp LC(S)   &kp LS(SPACE) &kp LS(RET) &kp LC(Z)   &kp LC(X)          &kp N9      &kp N0      &kp MINUS   &kp PLUS    &kp FSLH  &trans
+            &kp LC(C)   &kp LC(V)   &kp LC(LS(Z)) &trans                                    &kp DOT     &kp COMMA   &kp QMARK   &kp EXCL
                                                 &trans      &trans              &trans      &trans
             >;
         };
@@ -232,9 +251,9 @@
         // 薙刀式の上で使う移動レイヤー（Enter長押し）
         layer_ng_navi {
             bindings = <
-                        &kp RBKT    &kp AT      &kp NUHS    &kp CARET           &kp C_VOL_UP &kp ESC    &kp UP      &kp LS(CAPS)
-&kp LBKT    &kp HASH    &mt LGUI STAR &mt LALT AMPS &mt LSHFT LPAR &kp LS(INT3) &kp C_VOL_DN &kp LEFT   &kp DOWN    &kp RIGHT   &kp C_BRI_UP &kp PSCRN
-            &kp INT1    &kp RBRC    &kp LBRC    &kp TILDE2                                  &kp C_PREV  &kp C_PP    &kp C_NEXT  &kp C_BRI_DN
+                        &kp MINUS   &kp EQUAL   &kp LBKT    &kp RBKT            &kp DEL     &kp BSPC    &kp UP      &kp PG_UP
+&kp LC(X)   &kp LC(C)   &kp LC(V)   &kp HOME    &kp END     &ng_off            &ng_on      &kp LEFT    &kp DOWN    &kp RIGHT   &kp PG_DN   &kp BSPC
+            &kp GRAVE   &kp LC(Z)   &kp LC(Y)   &trans                                      &kp LS(LEFT) &kp LS(DOWN) &kp LS(RIGHT) &kp LS(UP)
                                                 &trans      &trans              &trans      &trans
             >;
         };
