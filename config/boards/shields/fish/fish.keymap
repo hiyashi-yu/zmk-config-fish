@@ -81,16 +81,6 @@
         timeout-ms = <100>;
         require-prior-idle-ms = <150>;
 
-        combo_lang2 {
-            key-positions = <11 12>;
-            bindings = <&kp LANG2>;
-        };
-
-        combo_lang1 {
-            key-positions = <15 16>;
-            bindings = <&kp LANG1>;
-        };
-
         combo_reset_L {
             key-positions = <3 8 13>;
             bindings = <&bootloader>;
@@ -106,16 +96,17 @@
             bindings = <&studio_unlock>;
         };
 
-        combo_ng_on {
+        // なかぼね配列：あたまの楔ペア同時押しで かな／英数 を切り替える
+        combo_kana_wedge {
             timeout-ms = <300>;
-            key-positions = <14 15>;
+            key-positions = <4 14>;
             bindings = <&ng_on>;
-            layers = <0>;
+            layers = <0 10>;
         };
 
-        combo_ng_off {
+        combo_eisu_wedge {
             timeout-ms = <300>;
-            key-positions = <12 13>;
+            key-positions = <3 13>;
             bindings = <&ng_off>;
             layers = <0 10>;
         };
@@ -134,7 +125,7 @@
                         &kp W       &kp E       &kp R       &kp T               &kp Y       &kp U       &kp I       &kp O
 &kp Q       &kp A       &mt LGUI S  &mt LALT D  &mt LSHFT F &kp G               &kp H       &mt RSHFT J &mt RALT K  &mt RGUI L  &kp P       &kp BSPC
             &kp Z       &kp X       &kp C       &kp V                                       &kp M       &kp COMMA   &kp DOT     &kp RET
-                                                &lt 1 B     &mt LCTRL TAB        &mt RCTRL SPACE &lt 2 N
+                                                &lt 1 B     &mt LCTRL TAB        &lt 1 SPACE   &lt 2 N
             >;
         };
 
@@ -224,7 +215,7 @@
                         &ng W       &ng E       &ng R       &ng T               &ng Y       &ng U       &ng I       &ng O
 &ng Q       &ng A       &ng S       &ng D       &ng F       &ng G               &ng H       &ng J       &ng K       &ng L       &ng P       &ng SEMI
             &ng Z       &ng X       &ng C       &ng V                                       &ng M       &ng COMMA   &ng DOT     &ng SLASH
-                                                &ng B       &kp RET               &ng SPACE   &ng N
+                                                &kp BSPC    &lt 2 RET             &lt 1 SPACE &kp TAB
             >;
         };
     };
