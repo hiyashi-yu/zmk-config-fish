@@ -241,10 +241,10 @@
         // 薙刀式の上で使う数字レイヤー（Space長押し）。薙刀式（10）より上にないと効かない
         layer_ng_math {
             bindings = <
-                        &kp N1      &kp N2      &kp N3      &kp N4              &kp N5      &kp N6      &kp N7      &kp N8
-&kp LC(A)   &kp LC(S)   &kp LS(SPACE) &kp LS(RET) &kp LC(Z)   &kp LC(X)          &kp N9      &kp N0      &kp MINUS   &kp PLUS    &kp FSLH  &trans
-            &kp LC(C)   &kp LC(V)   &kp LC(LS(Z)) &trans                                    &kp DOT     &kp COMMA   &kp QMARK   &kp EXCL
-                                                &trans      &trans              &trans      &trans
+                        &kp LC(A)   &kp LC(S)   &kp LS(SPACE) &kp LS(RET)       &kp N7      &kp N8      &kp N9      &kp FSLH
+&kp LC(X)   &kp LC(C)   &kp LC(V)   &kp LC(LS(Z)) &kp HOME    &kp END            &kp N4      &kp N5      &kp N6      &kp MINUS   &kp PLUS  &trans
+            &kp ESC     &kp BSPC    &kp DEL     &trans                                      &kp N1      &kp N2      &kp N3      &kp DOT
+                                                &trans      &trans              &kp N0      &trans
             >;
         };
 
