@@ -215,7 +215,7 @@
                         &ng W       &ng E       &ng R       &ng T               &ng Y       &ng U       &ng I       &ng O
 &ng Q       &ng A       &ng S       &ng D       &ng F       &ng G               &ng H       &ng J       &ng K       &ng L       &ng P       &ng SEMI
             &ng Z       &ng X       &ng C       &ng V                                       &ng M       &ng COMMA   &ng DOT     &ng SLASH
-                                                &kp BSPC    &lt 12 RET            &lt 11 SPACE &kp TAB
+                                                &kp TAB     &kp RET               &lt 11 SPACE &kp TAB
             >;
         };
 
@@ -223,7 +223,7 @@
         layer_ng_math {
             bindings = <
                         &kp N1      &kp N2      &kp N3      &trans              &kp EQUAL   &kp LT      &kp UNDER   &kp GT
-&kp PLUS    &kp N0      &mt LGUI N4 &mt LALT N5 &mt LSHFT N6 &kp DOT            &kp LS(INT1) &mt RSHFT COLON &mt RALT MINUS &mt RGUI DQT &kp FSLH &kp PRCNT
+&kp PLUS    &kp N0      &kp N4      &kp N5      &kp N6      &kp DOT            &kp LS(INT1) &kp COLON   &kp MINUS   &kp DQT     &kp FSLH &kp PRCNT
             &kp DLLR    &kp N7      &kp N8      &kp N9                                      &kp EXCL    &kp QMARK   &kp SQT     &kp SEMI
                                                 &trans      &trans              &trans      &trans
             >;
