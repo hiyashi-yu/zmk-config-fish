@@ -79,7 +79,7 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings
-                = <&macro_tap &kp LANG2 &to 0>
+                = <&macro_tap &kp LANG2 &kp INT5 &to 0>
                 ;
         };
     };
