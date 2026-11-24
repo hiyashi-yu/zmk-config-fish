@@ -64,6 +64,16 @@
             quick-tap-ms = <150>;
             bindings = <&mo>, <&ng>;
         };
+
+        // なかぼね用：左下親指 短押し＝Ctrl、長押し＝英数配列＋Ctrlレイヤー（13）
+        lt_ngc: layer_tap_ngctrl {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <150>;
+            bindings = <&mo>, <&kp>;
+        };
     };
 
     macros {
@@ -79,7 +89,7 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings
-                = <&macro_tap &kp LANGUAGE_2 &to 0>
+                = <&macro_tap &kp CAPS &to 0>
                 ;
         };
     };
@@ -128,6 +138,22 @@
             key-positions = <3 13>;
             bindings = <&ng_off>;
             layers = <10>;
+        };
+
+        // 既にかなモードのときに右あたまを押しても何も出ないようにする
+        combo_kana_wedge_swallow {
+            timeout-ms = <300>;
+            key-positions = <4 14>;
+            bindings = <&none>;
+            layers = <10>;
+        };
+
+        // 既に英数モードのときに左あたまを押しても何も出ないようにする
+        combo_eisu_wedge_swallow {
+            timeout-ms = <300>;
+            key-positions = <3 13>;
+            bindings = <&none>;
+            layers = <0>;
         };
     };
     
@@ -234,7 +260,7 @@
                         &ng W       &ng E       &ng R       &ng T               &ng Y       &ng U       &ng I       &ng O
 &ng Q       &ng A       &ng S       &ng D       &ng F       &ng G               &ng H       &ng J       &ng K       &ng L       &ng P       &ht_ng 11 SEMI
             &ng Z       &ng X       &ng C       &ng V                                       &ng M       &ng COMMA   &ng DOT     &ng SLASH
-                                                &kp LCTRL   &kp SPACE             &kp TAB &lt_hp 12 RET
+                                                &kp SPACE   &lt_ngc 13 LCTRL        &kp TAB &lt_hp 12 RET
             >;
         };
 
@@ -254,6 +280,16 @@
                         &kp MINUS   &kp EQUAL   &kp LBKT    &kp RBKT            &kp DEL     &kp BSPC    &kp UP      &kp PG_UP
 &kp LC(X)   &kp LC(C)   &kp LC(V)   &kp HOME    &kp END     &kp TAB              &kp RET     &kp LEFT    &kp DOWN    &kp RIGHT   &kp PG_DN   &kp BSPC
             &kp GRAVE   &kp LC(Z)   &kp LC(Y)   &trans                                      &kp LS(LEFT) &kp LS(DOWN) &kp LS(RIGHT) &kp LS(UP)
+                                                &trans      &trans              &trans      &trans
+            >;
+        };
+
+        // かなレイヤーでCtrl親指（29）を押している間だけ使う、英数配列＋Ctrlのレイヤー
+        layer_ng_ctrl {
+            bindings = <
+                        &kp LC(W)   &kp LC(E)   &kp LC(R)   &kp LC(T)           &kp LC(Y)   &kp LC(BSPC) &kp LC(I)   &kp LC(O)
+&kp LC(Q)   &kp LC(A)   &kp LC(S)   &kp LC(D)   &kp LC(F)   &kp LC(G)           &kp LC(H)   &kp LC(J)    &kp LC(K)    &kp LC(U)   &kp LC(P)   &kp LC(L)
+            &kp LC(Z)   &kp LC(X)   &kp LC(C)   &kp LC(V)                                   &kp LC(M)   &kp LC(COMMA) &kp LC(DOT) &kp LC(RET)
                                                 &trans      &trans              &trans      &trans
             >;
         };
