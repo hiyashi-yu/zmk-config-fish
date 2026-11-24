@@ -79,7 +79,7 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings
-                = <&macro_tap &kp GRAVE &to 0>
+                = <&macro_tap &kp LANGUAGE_2 &to 0>
                 ;
         };
     };
@@ -234,14 +234,14 @@
                         &ng W       &ng E       &ng R       &ng T               &ng Y       &ng U       &ng I       &ng O
 &ng Q       &ng A       &ng S       &ng D       &ng F       &ng G               &ng H       &ng J       &ng K       &ng L       &ng P       &ht_ng 11 SEMI
             &ng Z       &ng X       &ng C       &ng V                                       &ng M       &ng COMMA   &ng DOT     &ng SLASH
-                                                &kp LCTRL   &kp SPACE             &lt_hp 12 RET &kp TAB
+                                                &kp LCTRL   &kp SPACE             &kp TAB &lt_hp 12 RET
             >;
         };
 
         // 薙刀式の上で使う数字レイヤー（Space長押し）。薙刀式（10）より上にないと効かない
         layer_ng_math {
             bindings = <
-                        &kp LC(A)   &kp LC(S)   &kp LS(SPACE) &kp LS(RET)       &kp N7      &kp N8      &kp N9      &kp FSLH
+                        &kp LC(A)   &kp LC(S)   &kp LS(SPACE) &kp LS(RET)       &kp DOT     &kp N7      &kp N8      &kp N9
 &kp LC(X)   &kp LC(C)   &kp LC(V)   &kp LC(LS(Z)) &kp HOME    &kp END            &kp N0      &kp N4      &kp N5      &kp N6      &kp MINUS &trans
             &kp ESC     &kp BSPC    &kp DEL     &trans                                      &kp N1      &kp N2      &kp N3      &kp PLUS
                                                 &trans      &trans              &kp DOT     &trans
