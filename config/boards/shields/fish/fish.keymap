@@ -65,7 +65,7 @@
             bindings = <&mo>, <&ng>;
         };
 
-        // なかぼね用：左下親指 短押し＝Ctrl、長押し＝英数配列＋Ctrlレイヤー（7）
+        // なかぼね用：左下親指 短押し＝Ctrl、長押し＝Ctrlレイヤー（5）
         lt_ngc: layer_tap_ngctrl {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -82,7 +82,7 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings
-                = <&macro_tap &kp F15 &to 4>
+                = <&macro_tap &kp F15 &to 1>
                 ;
         };
 
@@ -139,7 +139,7 @@
             timeout-ms = <300>;
             key-positions = <3 13>;
             bindings = <&ng_off>;
-            layers = <4>;
+            layers = <1>;
         };
 
         // 既にかなモードのときに右あたまを押しても何も出ないようにする
@@ -147,7 +147,7 @@
             timeout-ms = <300>;
             key-positions = <4 14>;
             bindings = <&none>;
-            layers = <4>;
+            layers = <1>;
         };
 
         // 既に英数モードのときに左あたまを押しても何も出ないようにする
@@ -156,6 +156,14 @@
             key-positions = <3 13>;
             bindings = <&none>;
             layers = <0>;
+        };
+
+        // 左右の上親指（Space＋Enter）同時押しで、押している間だけシステム層を開く
+        combo_system_thumbs {
+            timeout-ms = <200>;
+            key-positions = <28 31>;
+            bindings = <&mo 4>;
+            layers = <0 1 2 3>;
         };
     };
     
@@ -167,75 +175,58 @@
     keymap {
         compatible = "zmk,keymap";
 
-        // レイヤー構成（ビルド#22で整理）：
-        // 0 英数／1 数字・記号／2 記号・移動／3 システム／4 かな／5 数字（かな用）／6 移動（かな用）／7 Ctrl
+        // レイヤー構成（ビルド#23で整理）：
+        // 0 英数／1 かな／2 数字（共用）／3 移動（共用）／4 システム／5 Ctrl
 
         layer_base {
             bindings = <
                         &kp W       &kp E       &kp R       &kp T               &kp Y       &kp BSPC    &kp I       &kp O
-&kp Q       &kp A       &mt LGUI S  &mt LALT D  &mt LSHFT F &kp G               &kp H       &mt RSHFT J &mt RALT K  &mt RGUI U  &kp L       &lt_hp 1 P
-            &kp Z       &kp X       &kp C       &kp V                                       &lt_hp 1 B  &lt_hp 2 N  &kp M       &kp DOT
-                                                &lt_hp 1 SPACE &none           &mt LCTRL TAB   &kp RET
-            >;
-        };
-
-        layer_math {
-            bindings = <
-                        &kp N7      &kp N8      &kp N9      &kp DLLR            &kp EQUAL   &kp LT      &kp DOT     &kp GT
-&none       &kp UNDER   &mt LGUI N4 &mt LALT N5 &mt LSHFT N6 &kp N0            &none       &mt RSHFT COLON &mt RALT MINUS &mt RGUI DQT &kp FSLH &kp PRCNT
-            &kp PLUS    &kp N1      &kp N2      &kp N3                                      &kp EXCL    &kp QMARK   &kp SQT     &kp SEMI
-                                                &none       &trans              &trans      &trans
-            >;
-        };
-
-        layer_navi {
-            bindings = <
-                        &kp LBKT    &kp RBKT    &kp CARET   &kp NUHS            &kp C_VOL_UP &kp ESC    &kp UP      &kp LS(CAPS)
-&kp HASH    &kp AT      &mt LALT AMPS &mt LGUI STAR &mt LSHFT LPAR &kp LS(INT3) &kp C_VOL_DN &kp LEFT   &kp DOWN    &kp RIGHT   &kp C_BRI_UP &kp PSCRN
-            &none       &kp LBRC    &kp RBRC    &kp TILDE2                                  &kp C_PREV  &kp C_PP    &kp C_NEXT  &kp C_BRI_DN
-                                                &lt_hp 3 B  &trans              &trans      &none
-            >;
-        };
-
-        layer_system {
-            bindings = <
-                        &bt BT_SEL 4 &bt BT_CLR &bt BT_CLR_ALL &out OUT_TOG     &none       &kp INS     &kp HOME    &kp PG_UP
-&kp F1      &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &kp F6          &kp F7      &kp DEL     &kp END     &kp PG_DN   &kp K_APP   &kp F12
-            &kp F2      &kp F3      &kp F4      &kp F5                                      &kp F8      &kp F9      &kp F10     &kp F11
-                                                &none       &none               &none       &none
+&kp Q       &kp A       &mt LGUI S  &mt LALT D  &mt LSHFT F &kp G               &kp H       &mt RSHFT J &mt RALT K  &mt RGUI U  &kp L       &lt_hp 2 P
+            &kp Z       &kp X       &kp C       &kp V                                       &kp B       &kp N       &kp M       &kp DOT
+                                                &lt_hp 2 SPACE &lt_ngc 5 LCTRL        &kp TAB &lt_hp 3 RET
             >;
         };
 
         layer_naginata {
             bindings = <
                         &ng W       &ng E       &ng R       &ng T               &ng Y       &ng U       &ng I       &ng O
-&ng Q       &ng A       &ng S       &ng D       &ng F       &ng G               &ng H       &ng J       &ng K       &ng L       &ng P       &ht_ng 5 SEMI
+&ng Q       &ng A       &ng S       &ng D       &ng F       &ng G               &ng H       &ng J       &ng K       &ng L       &ng P       &ht_ng 2 SEMI
             &ng Z       &ng X       &ng C       &ng V                                       &ng M       &ng COMMA   &ng DOT     &ng SLASH
-                                                &kp SPACE   &lt_ngc 7 LCTRL        &kp TAB &lt_hp 6 RET
+                                                &lt_hp 2 SPACE &lt_ngc 5 LCTRL        &kp TAB &lt_hp 3 RET
             >;
         };
 
-        // 薙刀式の上で使う数字レイヤー（「へ」長押し）。薙刀式（4）より上にないと効かない
-        layer_ng_math {
+        // 数字レイヤー（英数・かな共用。Space長押し／「へ」長押しで開く）
+        layer_math {
             bindings = <
-                        &kp DEL     &kp BSPC    &kp HOME    &none               &trans      &kp N7      &kp N8      &kp N9
-&kp ESC     &kp LC(A)   &kp LC(S)   &kp LS(RET) &kp END     &kp LS(SPACE)       &kp N0      &kp N4      &kp N5      &kp N6      &kp MINUS &none
-            &kp LC(LS(Z)) &kp LC(X)   &kp LC(C)   &kp LC(V)                                   &kp N1      &kp N2      &kp N3      &kp PLUS
-                                                &trans      &trans              &kp DOT     &trans
-            >;
-        };
-
-        // 薙刀式の上で使う移動レイヤー（Enter長押し）
-        layer_ng_navi {
-            bindings = <
-                        &kp LBKT    &kp RBKT    &none       &trans              &kp PG_UP   &kp BSPC    &kp UP      &kp LS(UP)
-&kp TAB     &kp LC(Y)   &kp MINUS   &kp EQUAL   &none       &kp GRAVE           &kp PG_DN   &kp LEFT    &kp DOWN    &kp RIGHT   &kp LS(RET) &none
-            &kp LC(Z)   &kp LC(X)   &kp LC(C)   &kp LC(V)                                   &kp LS(LEFT) &kp LS(DOWN) &kp LS(RIGHT) &kp RET
+                        &kp QMARK   &none       &none       &kp MINUS           &kp DOT     &kp N7      &kp N8      &kp N9
+&kp ESC     &kp EXCL    &kp LC(S)   &kp LS(SPACE) &none     &kp PLUS            &kp N0      &kp N4      &kp N5      &kp N6      &kp LS(RET) &none
+            &kp LC(Z)   &kp LC(X)   &kp LC(C)   &kp LC(V)                                   &kp N1      &kp N2      &kp N3      &kp PAUSE
                                                 &trans      &trans              &trans      &trans
             >;
         };
 
-        // かなレイヤーでCtrl親指（29）を押している間だけ使う、英数配列＋Ctrlのレイヤー
+        // 移動レイヤー（英数・かな共用。Enter長押しで開く）
+        layer_navi {
+            bindings = <
+                        &kp LBKT    &kp LS(UP)  &kp RBKT    &ng_off             &ng_on      &kp BSPC    &kp UP      &none
+&kp CAPS    &kp AT      &kp LS(LEFT) &kp LS(DOWN) &kp LS(RIGHT) &kp INT5        &kp INT4    &kp LEFT    &kp DOWN    &kp RIGHT   &kp PG_UP   &none
+            &kp LC(Z)   &kp LC(X)   &kp LC(C)   &kp LC(V)                                   &none       &kp LC(S)   &none       &kp PG_DN
+                                                &trans      &trans              &trans      &trans
+            >;
+        };
+
+        // システム層（左右の上親指の同時押しで、押している間だけ開く）
+        layer_system {
+            bindings = <
+                        &bt BT_SEL 4 &bt BT_CLR &bt BT_CLR_ALL &out OUT_TOG     &kp C_MUTE  &kp C_VOL_UP &trans     &kp C_BRI_UP
+&kp F1      &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &kp F6          &kp F7      &kp C_VOL_DN &trans     &kp C_BRI_DN &kp K_APP   &kp F12
+            &kp F2      &kp F3      &kp F4      &kp F5                                      &kp F8      &kp F9      &kp F10     &kp F11
+                                                &trans      &trans              &trans      &trans
+            >;
+        };
+
+        // かな・英数の左下親指を押している間だけ使う、英数配列＋Ctrlのレイヤー
         layer_ng_ctrl {
             bindings = <
                         &kp LC(W)   &kp LC(E)   &kp LC(R)   &kp LC(T)           &kp LC(Y)   &kp LC(BSPC) &kp LC(I)   &kp LC(O)
