@@ -210,7 +210,7 @@
         layer_navi {
             bindings = <
                         &kp LBKT    &kp LS(UP)  &kp RBKT    &ng_off             &ng_on      &kp BSPC    &kp UP      &none
-&kp CAPS    &kp AT      &kp LS(LEFT) &kp LS(DOWN) &kp LS(RIGHT) &kp INT5        &kp INT4    &kp LEFT    &kp DOWN    &kp RIGHT   &kp PG_UP   &none
+&none       &kp AT      &kp LS(LEFT) &kp LS(DOWN) &kp LS(RIGHT) &kp INT5        &kp INT4    &kp LEFT    &kp DOWN    &kp RIGHT   &kp PG_UP   &none
             &kp LC(Z)   &kp LC(X)   &kp LC(C)   &kp LC(V)                                   &none       &kp LC(S)   &none       &kp PG_DN
                                                 &trans      &trans              &trans      &trans
             >;
