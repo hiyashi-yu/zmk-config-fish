@@ -55,7 +55,7 @@
             bindings = <&mo>, <&kp>;
         };
 
-        // なかぼね用：「へ」短押し＝へ、長押し＝数字レイヤー
+        // なかぼね用：「へ」短押し＝へ、長押し＝へ専用レイヤー（6。数字層は条件付きで連動）
         ht_ng: hold_tap_ng {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -94,9 +94,36 @@
                 = <&macro_tap &kp F14 &to 0>
                 ;
         };
+
+        // べ・ぺ（ビルド#26）：「へ」長押し専用レイヤー（6）でのみ使う。
+        // 薙刀式テーブル側の べ（F+SEMI）／ぺ（V+SEMI）は、へ長押し判定が先に立つため
+        // SEMIとの同時押しとして届かない。専用レイヤー上でローマ字を直接送る。
+        macro_be: macro_be {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_tap &kp B &kp E>
+                ;
+        };
+
+        macro_pe: macro_pe {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_tap &kp P &kp E>
+                ;
+        };
     };
 
     conditional_layers {
+        compatible = "zmk,conditional-layers";
+
+        // 「へ」長押し専用レイヤー（6）が開いたら数字レイヤー（2）も開く。
+        // Space長押しでは 6 は開かないので、べ／ぺ は出ない。
+        he_then_math {
+            if-layers = <6>;
+            then-layer = <2>;
+        };
     };
 
 
@@ -175,8 +202,9 @@
     keymap {
         compatible = "zmk,keymap";
 
-        // レイヤー構成（ビルド#23で整理）：
+        // レイヤー構成（ビルド#23で整理、#26で6を追加）：
         // 0 英数／1 かな／2 数字（共用）／3 移動（共用）／4 システム／5 Ctrl
+        // 6 へ長押し専用（べ・ぺ。開くと条件付きで2も開く）
 
         layer_base {
             bindings = <
@@ -190,13 +218,13 @@
         layer_naginata {
             bindings = <
                         &ng W       &ng E       &ng R       &ng T               &ng Y       &ng U       &ng I       &ng O
-&ng Q       &ng A       &ng S       &ng D       &ng F       &ng G               &ng H       &ng J       &ng K       &ng L       &ng P       &ht_ng 2 SEMI
+&ng Q       &ng A       &ng S       &ng D       &ng F       &ng G               &ng H       &ng J       &ng K       &ng L       &ng P       &ht_ng 6 SEMI
             &ng Z       &ng X       &ng C       &ng V                                       &ng M       &ng COMMA   &ng DOT     &ng SLASH
                                                 &lt_hp 2 SPACE &lt_ngc 5 LCTRL        &kp TAB &lt_hp 3 RET
             >;
         };
 
-        // 数字レイヤー（英数・かな共用。Space長押し／「へ」長押しで開く）
+        // 数字レイヤー（英数・かな共用。Space長押しで開く。「へ」長押しは専用レイヤー6経由で条件付き連動）
         layer_math {
             bindings = <
                         &kp QMARK   &none       &none       &kp MINUS           &kp DOT     &kp N7      &kp N8      &kp N9
@@ -233,6 +261,18 @@
 &kp LC(Q)   &kp LC(A)   &kp LC(S)   &kp LC(D)   &kp LC(F)   &kp LC(G)           &kp LC(H)   &kp LC(J)    &kp LC(K)    &kp LC(U)   &kp LC(L)   &kp LC(P)
             &kp LC(Z)   &kp LC(X)   &kp LC(C)   &kp LC(V)                                   &kp LC(B)   &kp LC(N)   &kp LC(M)   &kp LC(DOT)
                                                 &none       &trans              &none       &kp LC(SPACE)
+            >;
+        };
+
+        // 「へ」長押し専用レイヤー（ビルド#26）：全て透過で、F＝べ／V＝ぺ のマクロだけ実体。
+        // 開いている間は conditional_layers で数字レイヤー（2）も開くため、
+        // 数字や記号は従来どおり数字レイヤーの割り当てで打てる。
+        layer_he {
+            bindings = <
+                        &trans      &trans      &trans      &trans              &trans      &trans      &trans      &trans
+&trans      &trans      &trans      &trans      &macro_be   &trans              &trans      &trans      &trans      &trans      &trans      &trans
+            &trans      &trans      &trans      &macro_pe                                   &trans      &trans      &trans      &trans
+                                                &trans      &trans              &trans      &trans
             >;
         };
     };
