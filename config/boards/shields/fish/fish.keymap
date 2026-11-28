@@ -124,6 +124,15 @@
             if-layers = <6>;
             then-layer = <2>;
         };
+
+        // 数字レイヤー（2）と移動レイヤー（3）が両方開いたらシステムレイヤー（4）も開く。
+        // Space長押し（→2）とEnter長押し（→3）を両方押している間だけシステム層が開く。
+        // ビルド#30：旧 combo_system_thumbs（<28 31>）は、親指キーの押下がコンボ判定で
+        // 保留され、長押しのレイヤー切り替えが間に合わない問題があったため、この方式に移行した。
+        math_navi_then_system {
+            if-layers = <2 3>;
+            then-layer = <4>;
+        };
     };
 
 
@@ -145,7 +154,7 @@
         };
 
         combo_reset_R {
-            key-positions = <4 14 19>;
+            key-positions = <4 14 18>;
             bindings = <&bootloader>;
         };
 
@@ -185,13 +194,8 @@
             layers = <0>;
         };
 
-        // 左右の上親指（Space＋Enter）同時押しで、押している間だけシステム層を開く
-        combo_system_thumbs {
-            timeout-ms = <200>;
-            key-positions = <28 31>;
-            bindings = <&mo 4>;
-            layers = <0 1 2 3>;
-        };
+        // システム層の開き方はビルド#30で conditional_layers（2＋3→4）に移行したため、
+        // ここに親指キー（28／31）を使うコンボは置かない。
     };
     
 
@@ -244,7 +248,8 @@
             >;
         };
 
-        // システム層（左右の上親指の同時押しで、押している間だけ開く）
+        // システム層（Space長押しとEnter長押しで数字・移動の両レイヤーが開いている間だけ、
+        // conditional_layers の連動で開く。ビルド#30でコンボ方式から移行）
         layer_system {
             bindings = <
                         &bt BT_SEL 4 &bt BT_CLR &bt BT_CLR_ALL &out OUT_TOG     &kp C_MUTE  &kp C_VOL_UP &trans     &kp C_BRI_UP
